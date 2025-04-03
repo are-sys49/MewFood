@@ -1,62 +1,116 @@
 import React from "react";
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, SafeAreaView, StatusBar, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const InfoUserScreen = () => {
+  const navigation = useNavigation();
+  
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Perfil de usuario</Text>
+    <SafeAreaView style={styles.container}>
+      <StatusBar backgroundColor="#63d4c5" barStyle="dark-content" />
       
-      <TextInput style={styles.input} placeholder="Nombre" />
-      <TextInput style={styles.input} placeholder="Apellido paterno" />
-      <TextInput style={styles.input} placeholder="Apellido materno" />
-      <TextInput style={styles.input} placeholder="Teléfono" keyboardType="phone-pad" />
-      <TextInput style={styles.input} placeholder="Correo" keyboardType="email-address" />
-      
-      <View style={styles.buttonRow}>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Editar perfil</Text>
+      {/* User Profile Card */}
+      <View style={styles.card}>
+        {/* Foto de perfil dentro de la tarjeta */}
+        <Image 
+          source={{ uri: 'https://via.placeholder.com/100' }} // Cambia la URL por la foto de perfil real
+          style={styles.profileImage} 
+        />
+        
+        <Text style={styles.cardTitle}>Información Personal</Text>
+        
+        <View style={styles.infoContainer}>
+          <TextInput style={styles.input} placeholder="Nombre" />
+        </View>
+        
+        <View style={styles.infoContainer}>
+          <TextInput style={styles.input} placeholder="Apellido paterno" />
+        </View>
+        
+        <View style={styles.infoContainer}>
+          <TextInput style={styles.input} placeholder="Apellido materno" />
+        </View>
+        
+        <View style={styles.infoContainer}>
+          <TextInput 
+            style={styles.input} 
+            placeholder="Teléfono" 
+            keyboardType="phone-pad" 
+          />
+        </View>
+        
+        <View style={styles.infoContainer}>
+          <TextInput 
+            style={styles.input} 
+            placeholder="Correo" 
+            keyboardType="email-address" 
+          />
+        </View>
+        
+        <TouchableOpacity 
+        style={styles.editButton}
+        onPress={() => navigation.navigate("EditProfileScreen")}>
+          <Text style={styles.editButtonText}>Editar perfil</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Cambiar contraseña</Text>
+
+        <TouchableOpacity style={styles.editButton}>
+          
+          <Text style={styles.editButtonText}>Cambiar contraseña</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#AEEEEE",
-    padding: 20,
     flex: 1,
-    alignItems: "center",
+    backgroundColor: '#fff',
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
+  card: {
+    margin: 20,
+    padding: 20,
+    backgroundColor: '#a3eade',
+    borderRadius: 15,
+    alignItems: 'center',
+    marginTop: 100,
+  },
+  profileImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginBottom: 15, // Espacio entre la foto de perfil y el texto
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
     marginBottom: 20,
+    
+  },
+  infoContainer: {
+    backgroundColor: '#fff',
+    width: '90%',
+    marginVertical: 5,
+    borderRadius: 8,
   },
   input: {
-    width: "100%",
-    backgroundColor: "#fff",
     padding: 10,
-    marginBottom: 10,
-    borderRadius: 8,
+    fontSize: 16,
+    width: '100%',
   },
-  buttonRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 20,
+  editButton: {
+    marginTop: 15,
+    backgroundColor: '#fff',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 20,
   },
-  button: {
-    backgroundColor: "#fff",
-    padding: 10,
-    marginHorizontal: 5,
-    borderRadius: 8,
-  },
-  buttonText: {
-    fontWeight: "bold",
+  editButtonText: {
+    fontSize: 16,
+    color: '#000',
   },
 });
 
 export default InfoUserScreen;
+
+

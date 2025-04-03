@@ -4,17 +4,17 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-
-
+// Importa todos los componentes
 import Login from "./components/Login";
 import Registro from "./components/Registro";
-import HomeScreen from "./components/HomeScreen"; // Mover esta a components
+import HomeScreen from "./components/HomeScreen";
 import ConfigScreen from "./components/ConfigScreen";
 import DispenseFoodScreen from "./components/DispenseFoodScreen";
-import RegistroMascota from "./components/RegistroMascota"; // Mover esta a components
-import InfoUserScreen from "./components/InfoUserScreen"; // Mover esta a components
-import HistorialScreen from "./components/HistorialScreen"; // Mover esta a components
-import MascotaScreen from "./components/MascotaScreen"; // Mover esta a components
+import RegistroMascota from "./components/RegistroMascota";
+import InfoUserScreen from "./components/InfoUserScreen";
+import HistorialScreen from "./components/HistorialScreen";
+import MascotaScreen from "./components/MascotaScreen";
+import EditProfileScreen from "./components/EditProfileScreen";
 
 const AuthStack = createStackNavigator();
 const AppStack = createStackNavigator();
@@ -67,8 +67,37 @@ const App = () => {
           >
             {(props) => <HomeScreen {...props} />}
           </AppStack.Screen>
-          <AppStack.Screen name="ConfigScreen" component={ConfigScreen} options={{ title: "Configuración" }} />
-          <AppStack.Screen name="DispenseFood" component={DispenseFoodScreen} options={{ title: "Dispensar comida" }} />
+          <AppStack.Screen
+            name="ConfigScreen"
+            component={ConfigScreen}
+            options={{ title: "Configuración" }}
+          />
+          <AppStack.Screen
+            name="DispenseFood"
+            component={DispenseFoodScreen}
+            options={{ title: "Dispensar comida" }}
+          />
+          {/* Asegúrate de agregar las pantallas que deseas navegar */}
+          <AppStack.Screen
+            name="InfoUserScreen"
+            component={InfoUserScreen}
+            options={{ title: "Información del Usuario" }}
+          />
+          <AppStack.Screen
+            name="HistorialScreen"
+            component={HistorialScreen}
+            options={{ title: "Historial" }}
+          />
+          <AppStack.Screen
+            name="MascotaScreen"
+            component={MascotaScreen}
+            options={{ title: "Información de la Mascota" }}
+          />
+          <AppStack.Screen
+            name="EditProfileScreen"
+            component={EditProfileScreen}
+            options={{ title: "Editar Perfil" }}
+          />
         </AppStack.Navigator>
       ) : (
         <AuthStack.Navigator screenOptions={{ headerShown: false }}>
